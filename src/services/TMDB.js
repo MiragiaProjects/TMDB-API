@@ -3,19 +3,30 @@ import axios from 'axios'
 const BASE_URL = 'https://api.themoviedb.org/3'
 const API_KEY = import.meta.env.VITE_API_KEY
 
-//get list of movies in cinema right now
+const apiKey = '?api_key=' + API_KEY
+
+const get = async (endpoint) => {
+    const response = await axios.get(BASE_URL + endpoint)
+    return response.data.results
+}
+
+
+// Get list of Cinema-movies
 const getCinemaMovies = async () => {
-    return getCinemaMovies(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}&include_adult=false`)
+    return get(`/movie/now_playing${apiKey}&include_adult=false`)
+
 }
 
-// get list of popular movies
+// Get list of Popular-movies
 const getPopularMovies = async () => {
-    return getPopularMovies(`${BASE_URL}/trending/all/week?api_key=${API_KEY}&include_adult=false`)
+    return get(`/trending/all/week${apiKey}&include_adult=false`)
+    
 }
 
-// get list of Toplisted movies
+// Get list of Toplisted-movies
 const getToplistedMovies = async () => {
-    return getToplistedMovies(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&include_adult=false`)
+    return get(`/movie/top_rated${apiKey}&include_adult=false`)
+    
 }
 
 export default {
