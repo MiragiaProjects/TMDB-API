@@ -42,7 +42,7 @@ const getMovie = async (id) => {
 
 // Get an actor
 const getActor = async (id) => {
-    return get(`/person/${id}${apiKey}&language=en-US`)
+    return get(`/person/${id}${apiKey}&append_to_response=movie_credits&include_adult=false&language=en-US`)
 }
 
 // Get actors movies
