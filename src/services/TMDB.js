@@ -32,7 +32,11 @@ const getToplistedMovies = async () => {
 
 // Get list of Genre
 const getGenre = async (genre, page) => {
-    return get(`/discover/movie${apiKey}&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_geners=${genre}&page${page}`)
+    return get(`/discover/movie${apiKey}language=en-US&sort_by=popularity.desc&include_adult=false&with_geners=${genre}&page${page}`)
+}
+
+const getGenres = () => {
+    return get(`/genre/movie/list${apiKey}&language=en-US`)
 }
 
 // Get a movie
@@ -45,17 +49,13 @@ const getActor = async (id) => {
     return get(`/person/${id}${apiKey}&append_to_response=movie_credits&include_adult=false&language=en-US`)
 }
 
-// Get actors movies
-const getActorsMovies = async (id) => {
-    return get(`/discover/movie${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&with_people=${id}`)
-}
 
 export default {
     getCinemaMovies,
     getPopularMovies,
     getToplistedMovies,
     getGenre,
+    getGenres,
     getMovie,
     getActor,
-    getActorsMovies,
 }
