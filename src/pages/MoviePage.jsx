@@ -2,13 +2,14 @@ import React from 'react'
 import { useParams, Link} from 'react-router-dom'
 import Container  from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
-import useMovie from '../hooks/useMovie'
+import { getMovie } from '../services/TMDB'
+import { useQuery } from 'react-query'
 
 
 const MoviePage = () => {
     const { id } = useParams()
-    const { data:movie, isLoading, error, isError} = useMovie(id)
-    console.log(movie)
+    const { data, isLoading, error, isError} = useQuery(['movie', id], () => getMovie(id))
+    console.log(data)
   return (
     
     <Container>
@@ -22,27 +23,27 @@ const MoviePage = () => {
             <p>{error.message}</p>
         </Alert>}
 
-        {movie &&
+        {data &&
         <>
             <div>
         
-                <h3>{movie.title}</h3>
+                <h3>{data.title}</h3>
 
-                {movie.poster_path &&(
-                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+                {data.poster_path &&(
+                    <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
                 )}
                 <div className='d-flex flex-column'>
-                    <p>Genre:{movie.genres.map(genre => genre.name)}</p>
-                    <p>Released:{movie.release_date}</p>
+                    <p>Genre:{data.genres.map(genre => genre.name)}</p>
+                    <p>Released:{data.release_date}</p>
                     <h3>Overview</h3>
-                    <p>{movie.overview}</p>
+                    <p>{data.overview}</p>
                 </div>
             </div>
 
             <div>
                 <h3>Cast</h3>
                 <div className='d-flex'>
-                    {movie.credits.cast.map(cast => (
+                    {data.credits.cast.map(cast => (
                         <Card key={cast.id} className='w-20'>
                             {cast.profile_path && (
                                 <Card.Img variant='top' src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`} />

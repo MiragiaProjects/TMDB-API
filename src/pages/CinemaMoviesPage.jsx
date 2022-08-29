@@ -1,11 +1,8 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
-import { useQuery } from 'react-query'
 import MovieCard from '../components/MovieCard'
-import TMDBAPI from '../services/TMDB'
 import Row from 'react-bootstrap/Row'
-
 import useCinemaMovies from '../hooks/useCinemaMovies'
 
 
