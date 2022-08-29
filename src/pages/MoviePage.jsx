@@ -1,17 +1,14 @@
 import React from 'react'
 import { useParams, Link} from 'react-router-dom'
 import { useQuery } from 'react-query'
-import { getMovie} from '../services/TMDB'
+import TMDBAPI from '../services/TMDB'
 import Container  from 'react-bootstrap/Container'
 import Alert  from 'react-bootstrap/Alert'
-import Image from 'react-bootstrap/Image'
-
 
 
 const MoviePage = () => {
     const { movie_id } = useParams()
-    
-    const { data, isLoading, error, isError} = useQuery(['movie', movie_id], () => getMovie(movie_id))
+    const { data, isLoading, error, isError} = useQuery(['movie', movie_id], () => TMDBAPI.getMovie(movie_id))
 
   return (
     <Container>

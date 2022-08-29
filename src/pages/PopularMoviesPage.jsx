@@ -1,7 +1,5 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
 import { useQuery } from 'react-query'
 import TMDBAPI from '../services/TMDB'
 import Alert from 'react-bootstrap/Alert'
@@ -22,21 +20,7 @@ const PopularMoviesPage = () => {
           <p>{error.message}</p>
           </Alert>)} 
   
-      {data && (
-        <>
-        <Row>
-          {data.map( movie =>(
-            
-            <Col lg={3} md={4} sm={6} key={movie.id}>
-              <MovieCard movie={movie} />
-            </Col>
-  
-          ))}
-        </Row>
-  
-        </>
-  
-      )}
+          {data && <MovieCard data={data} /> }
   
       </Container>
     )

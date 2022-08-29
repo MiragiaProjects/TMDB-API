@@ -2,19 +2,14 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Container  from 'react-bootstrap/Container'
-import Image from 'react-bootstrap/Image'
-import ListGroup from 'react-bootstrap/ListGroup'
 import Alert from 'react-bootstrap/Alert'
-import { getActor } from '../services/TMDB'
+import TMDBAPI from '../services/TMDB'
 import { Card } from 'react-bootstrap'
-
-
-
 
 
 const ActorPage = () => {
     const { actor_id } = useParams()
-    const { data, isLoading, isError, error} = useQuery(['actor', actor_id ], () => getActor(actor_id))
+    const { data, isLoading, isError, error} = useQuery(['actor', actor_id ], () => TMDBAPI.getActor(actor_id))
 
   return (
     <Container>
@@ -28,7 +23,7 @@ const ActorPage = () => {
     {data &&
     <>
     <h1>{data.name}</h1>
-    <img className='img-fluid' src={data.profile_path  `https://image.tmdb.org/t/p/w500${person.profile_path}`}/>
+    <img className='img-fluid' src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}/>
         <div>
             <p>From: {data.birthday}</p>
             <p>Born: {data.place_of_birth}</p>

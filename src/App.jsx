@@ -18,12 +18,12 @@ function App() {
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="*" element={<NotFound />} />
-				<Route path="/movie/now_playing" element={<CinemaMoviesPage />} />
-				<Route path="/movie/popular" element={<PopularMoviesPage />} />
-				<Route path="/movie/top_rated" element={<ToplistedMoviesPage />}/>
-				<Route path="/movie/:id" element={<MoviePage/>} />
-				<Route path="/actor/:id" element={<ActorPage/>} />
-				<Route path="/genres/:id" element={<GenrePage/>} />
+				<Route path="/now_playing" element={<CinemaMoviesPage />} />
+				<Route path="/popular" element={<PopularMoviesPage />} />
+				<Route path="/top_rated" element={<ToplistedMoviesPage />}/>
+				<Route path="/movie/:movieId" element={<MoviePage/>} />
+				<Route path="/actor/:actorId" element={<ActorPage/>} />
+				<Route path="/genres/:genreId" element={<GenrePage/>} />
 			</Routes>
 		</div>
 	)
