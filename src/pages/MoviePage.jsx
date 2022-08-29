@@ -44,9 +44,9 @@ const MoviePage = () => {
 
             <div>
                 <h3>Cast</h3>
-                <div className='d-flex felx-wrap'>
+                <div className='Card-Wrapper'>
                     {data.credits.cast.map(cred => (
-                        <Card key={cred.id} className='w-25'>
+                        <Card key={cred.id} className='castCard'>
                             {cred.profile_path && (
                                 <Card.Img variant='top' src={`https://image.tmdb.org/t/p/w500${cred.profile_path}`} />
                             )}

@@ -5,11 +5,11 @@ import Button from 'react-bootstrap/Button'
 
 
 const MovieCard = ({ data }) => {
-    console.log(data.results)
+    
     return(
         <div className="d-flex flex-wrap justify-content-between">
             {data.results.map(resu => (
-                <Card className='w-25 p-3 mt-3' key={resu.id}>
+                <Card className='w-15 p-3 mt-3 movieCard' key={resu.id}>
                     {resu.poster_path && (
                         <Card.Img variant='top' src={`https://image.tmdb.org/t/p/w500${resu.poster_path}`} />
                     )}
@@ -17,7 +17,7 @@ const MovieCard = ({ data }) => {
                         <Card.Title>{resu.title}</Card.Title>
                         <Card.Text>{resu.release_date}</Card.Text>
                         <Button className='mt-auto' as={Link} to={`/movie/${resu.id}`} variant="primary">Read more ...</Button>
-                        {console.log(resu.id)}
+                        
                     </Card.Body>
                 </Card>
             ))}

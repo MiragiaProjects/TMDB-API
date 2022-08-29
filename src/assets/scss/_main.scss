@@ -1,0 +1,18 @@
+body {
+    background-color: #2977D6;
+}
+
+.castCard {
+    background-color: #6f0cca;
+    width: 300px;
+}
+
+.movieCard {
+    background-color: #D68829;
+    
+}
+.Card-Wrapper {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
