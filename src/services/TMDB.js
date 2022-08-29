@@ -8,6 +8,7 @@ const apiKey = '?api_key=' + API_KEY
 
 const get = async (endpoint) => {
     const response = await axios.get(BASE_URL + endpoint)
+    console.log(response)
     return response.data
 }
 
@@ -27,7 +28,6 @@ const getPopularMovies =  () => {
 // Get list of Toplisted-movies
 const getToplistedMovies = () => {
     return get(`/movie/top_rated${apiKey}&include_adult=false&page=1`)
-    
 }
 
 // Get list of Genre
@@ -40,7 +40,8 @@ export const getGenres = () => {
 }
 
 // Get a movie
-const getMovie = (id) => {
+export const getMovie = async ({queryKey}) => {
+    const [_key, {id}] = queryKey
     return get(`/movie/${id}?api_key=${API_KEY}&language=en-US&include_adult=false&append_to_response=credits`)
 }
 
@@ -54,6 +55,5 @@ export default {
     getCinemaMovies,
     getPopularMovies,
     getToplistedMovies,
-    getMovie,
     getActor,
 }

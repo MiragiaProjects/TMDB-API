@@ -1,16 +1,18 @@
 import React from 'react'
 import { useParams, Link} from 'react-router-dom'
 import Container  from 'react-bootstrap/Container'
-import Alert  from 'react-bootstrap/Alert'
+import Alert from 'react-bootstrap/Alert'
 import useMovie from '../hooks/useMovie'
 
 
 const MoviePage = () => {
-    const { movie_id } = useParams()
-    const { data:movie, isLoading, error, isError} = useMovie(movie_id)
-
+    const { id } = useParams()
+    const { data:movie, isLoading, error, isError} = useMovie(id)
+    console.log(movie)
   return (
+    
     <Container>
+        
     <h3>Movie Page</h3>
     {isLoading && (<p className='my-3'>Loading ...</p>)}
 
@@ -32,7 +34,6 @@ const MoviePage = () => {
                 <div className='d-flex flex-column'>
                     <p>Genre:{movie.genres.map(genre => genre.name)}</p>
                     <p>Released:{movie.release_date}</p>
-                    <p>Rating: {movie.vote_average}</p>
                     <h3>Overview</h3>
                     <p>{movie.overview}</p>
                 </div>

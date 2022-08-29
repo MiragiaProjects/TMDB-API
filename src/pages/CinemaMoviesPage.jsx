@@ -6,9 +6,11 @@ import MovieCard from '../components/MovieCard'
 import TMDBAPI from '../services/TMDB'
 import Row from 'react-bootstrap/Row'
 
+import useCinemaMovies from '../hooks/useCinemaMovies'
+
 
 const CinemaMoviesPage = () => {
-    const {isLoading, isError, error, data} = useQuery('movie', TMDBAPI.getCinemaMovies)
+    const {isLoading, isError, error, data:movie} = useCinemaMovies()
   return (
     <Container>
       <h1>Films in cinema right now</h1>
@@ -20,7 +22,7 @@ const CinemaMoviesPage = () => {
       </Alert>)}
       <Row>
         
-          {data && <MovieCard data={data} />}
+          {movie && <MovieCard data={movie} />}
         
       </Row>
     </Container>
