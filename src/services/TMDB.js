@@ -1,12 +1,11 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://api.themoviedb.org/3'
+axios.defaults.baseURL = 'https://api.themoviedb.org/3'
+
 const API_KEY = import.meta.env.VITE_API_KEY
 
-
-
 const get = async (endpoint) => {
-    const response = await axios.get(BASE_URL + endpoint)
+    const response = await axios.get(endpoint)
     console.log(response.data)
     return response.data
 }
@@ -30,7 +29,7 @@ export const getToplistedMovies = () => {
 }
 
 // Get list of Genre
-export const getGenre =  (genre, page) => {
+export const getGenre = (genre, page) => {
     return get(`/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&with_genres=${genre}&page=${page}`)
 }
 
@@ -39,7 +38,7 @@ export const getGenres = () => {
 }
 
 // Get a movie
-export const getMovie = async (id) => {
+export const getMovie = (id) => {
     return get(`/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`)
 }
 

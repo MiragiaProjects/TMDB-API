@@ -1,17 +1,16 @@
-import React from 'react'
 import Container from 'react-bootstrap/Container'
 import { useQuery } from 'react-query'
-import TMDBAPI from '../services/TMDB'
 import Alert from 'react-bootstrap/Alert'
 import MovieCard from '../components/MovieCard'
+import { getPopularMovies } from '../services/TMDB'
 
 const PopularMoviesPage = () => {
 
-    const { isLoading, isError, error, data} = useQuery('movie', TMDBAPI.getPopularMovies)
+    const { isLoading, isError, error, data} = useQuery(['popularMovies'], getPopularMovies)
   
     return (
       <Container>
-      <div>PopularMoviesPage</div>
+      <h1>PopularMoviesPage</h1>
       {isLoading && (<p className='my-3'>Loading ....</p>)}
   
       {isError && (

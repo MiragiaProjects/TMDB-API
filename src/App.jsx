@@ -10,6 +10,7 @@ import MoviePage from './pages/MoviePage'
 import ActorPage from './pages/ActorPage'
 import GenrePage from './pages/GenrePage'
 
+
 function App() {
 	return (
 		<div id="App">
@@ -17,13 +18,13 @@ function App() {
 
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path="*" element={<NotFound />} />
 				<Route path="/now_playing" element={<CinemaMoviesPage />} />
 				<Route path="/popular" element={<PopularMoviesPage />} />
 				<Route path="/top_rated" element={<ToplistedMoviesPage />}/>
-				<Route path="/movie/:movieId" element={<MoviePage/>} />
-				<Route path="/actor/:actorId" element={<ActorPage/>} />
-				<Route path="/genres/:genreId" element={<GenrePage/>} />
+				<Route path="/movie/:movie_id" element={<MoviePage/>} />
+				<Route path="/actor/:actor_id" element={<ActorPage/>} />
+				<Route path="/genres/:genre_id" element={<GenrePage/>} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</div>
 	)

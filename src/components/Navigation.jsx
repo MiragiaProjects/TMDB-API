@@ -11,7 +11,7 @@ const Navigation = () => {
 	return (
 		<Navbar bg="dark" variant="dark" expand="md">
 			<Container>
-				<Navbar.Brand as={Link} to="/">The Movie DB</Navbar.Brand>
+				<Navbar.Brand as={Link} to="/">The Movie DB!</Navbar.Brand>
 
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
@@ -21,8 +21,8 @@ const Navigation = () => {
 							<Dropdown>
 								<Dropdown.Toggle variant="dark" id="dropdown-basic">Genres</Dropdown.Toggle>
 								<Dropdown.Menu>
-									{data.genres.map(genre => (
-										<Dropdown.Item value="1" key={genre.id} size="sm" as={NavLink} to={`/genres/${genre.id}`}>{genre.name}</Dropdown.Item>
+									{data.genres.map(gen => (
+										<Dropdown.Item value="1" key={gen.id} size="sm" as={NavLink} to={`/genres/${gen.id}`}>{gen.name}</Dropdown.Item>
 									))}
 								</Dropdown.Menu>
 							</Dropdown>

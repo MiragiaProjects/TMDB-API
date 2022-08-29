@@ -2,12 +2,13 @@ import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import MovieCard from '../components/MovieCard'
-import Row from 'react-bootstrap/Row'
-import useCinemaMovies from '../hooks/useCinemaMovies'
+import { getCinemaMovies } from '../services/TMDB'
+import { useQuery } from 'react-query'
+
 
 
 const CinemaMoviesPage = () => {
-    const {isLoading, isError, error, data:movie} = useCinemaMovies()
+    const {isLoading, isError, error, data} = useQuery(['cinemaMovies'], getCinemaMovies)
   return (
     <Container>
       <h1>Films in cinema right now</h1>
@@ -17,11 +18,11 @@ const CinemaMoviesPage = () => {
         <h3>Ops, eerror</h3>
         <p>{error.message}</p>
       </Alert>)}
-      <Row>
+      
         
-          {movie && <MovieCard data={movie} />}
+          {data && <MovieCard data={data} />}
         
-      </Row>
+      
     </Container>
   )
 }

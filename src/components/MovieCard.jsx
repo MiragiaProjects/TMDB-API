@@ -16,7 +16,7 @@ const MovieCard = ({ data }) => {
                     <Card.Body className='d-flex flex-column'>
                         <Card.Title>{resu.title}</Card.Title>
                         <Card.Text>{resu.release_date}</Card.Text>
-                        <Button as={Link} to={`/movie/${resu.id}`} variant="primary">Read more ...</Button>
+                        <Button className='mt-auto' as={Link} to={`/movie/${resu.id}`} variant="primary">Read more ...</Button>
                         {console.log(resu.id)}
                     </Card.Body>
                 </Card>

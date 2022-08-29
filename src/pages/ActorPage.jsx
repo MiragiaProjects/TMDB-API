@@ -3,24 +3,27 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Container  from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
-import TMDBAPI from '../services/TMDB'
+import {getActor} from '../services/TMDB'
 import { Card } from 'react-bootstrap'
+import { useQuery } from 'react-query'
 
 
 const ActorPage = () => {
     const { actor_id } = useParams()
-    const { data, isLoading, isError, error} = useQuery(['actor', actor_id ], () => TMDBAPI.getActor(actor_id))
+    const { data, isLoading, isError, error} = useQuery(['actor', actor_id ], () => getActor(actor_id))
 
   return (
     <Container>
     <h1>Actor Page</h1>
 
     {isLoading && (<p className='my-3'>Loading ...</p>)}
+
     {isError && (<Alert>
         <p>Oh no, error!</p>
         <p>{error.message}</p>
     </Alert>)}
-    {data &&
+
+    {data && (
     <>
     <h1>{data.name}</h1>
     <img className='img-fluid' src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}/>
@@ -30,22 +33,22 @@ const ActorPage = () => {
             <p>About: {data.biography}</p>
             <h3>Films:</h3>
             <div>
-                {data.credits.cast.map(cast =>(
-                    <Card key={cast.id} className="w-20">
-                        {cast.poster_path && (
-                            <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w300${cast.poster_path}`} />
+                {data.credits.cast.map(cred =>(
+                    <Card key={cred.id} className="w-20">
+                        {cred.poster_path && (
+                            <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w300${cred.poster_path}`} />
                         )}
                         <Card.Body className='d-flex flex-column'>
-                            <Card.Title>{cast.title}</Card.Title>
-                            <Card.Text>{cast.character}</Card.Text>
-                            <Button as={Link} to={`/movie/${cast.id}`} variant="primary">Read more....</Button>
+                            <Card.Title>{cred.title}</Card.Title>
+                            <Card.Text>{cred.character}</Card.Text>
+                            <Button as={Link} to={`/movie/${cred.id}`} variant="primary">Read more....</Button>
                         </Card.Body>
                     </Card>
                 ))}
             </div>
         </div>
     </>
-    }
+    )}
     </Container>
 
   )
