@@ -10,16 +10,16 @@ const PopularMoviesPage = () => {
   
     return (
       <Container>
-      <h1>PopularMoviesPage</h1>
-      {isLoading && (<p className='my-3'>Loading ....</p>)}
+          <h1>PopularMoviesPage</h1>
+              {isLoading && (<p className='my-3'>Loading ....</p>)}
   
-      {isError && (
-        <Alert variant="danger">
-          <h3>Ops, ERROR!</h3>
-          <p>{error.message}</p>
-          </Alert>)} 
+              {isError && (
+                  <Alert variant="danger">
+                      <h3>Ops, ERROR!</h3>
+                      <p>{error.message}</p>
+                  </Alert>)} 
   
-          {data && <MovieCard data={data} /> }
+              {data && <MovieCard data={data} /> }
   
       </Container>
     )

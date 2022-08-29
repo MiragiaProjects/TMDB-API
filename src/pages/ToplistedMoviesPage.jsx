@@ -10,15 +10,16 @@ const ToplistedMoviesPage = () => {
     <Container>
           <h2>Toplisted Movies</h2>
 
-          {isLoading && (<p className='my-3'>Loading...</p>)}
+              {isLoading && (<p className='my-3'>Loading...</p>)}
 
-          {isError && ( <Alert variant="danger">
-              <h4>Ops, error!</h4>
-              <p>{error.message}</p>
-    </Alert>
-    )}
+              {isError && ( 
+                  <Alert variant="danger">
+                      <h4>Ops, error!</h4>
+                      <p>{error.message}</p>
+                  </Alert>
+               )}
 
-    {data && <MovieCard data={data} /> }
+                {data && <MovieCard data={data} /> }
 
     </Container>
   )

@@ -29,21 +29,22 @@ const GenrePage = () => {
 
   return (
     <Container>
-    <div>GenrePage</div>
 
-    {isLoading && (<p>Loading ....</p>)}
+        <div>GenrePage</div>
 
-    {isError && (<p>Ops! Error!{error.message}</p>)}
+            {isLoading && (<p>Loading ....</p>)}
 
-    {data && (
-        <>
-        <h1>{nameGenre}</h1>
+            {isError && (<p>Ops! Error!{error.message}</p>)}
 
-        <MovieCard data={data} />
+            {data && (
+                <>
+                    <h1>{nameGenre}</h1>
 
-        <Pagination page={page} changePage={setSearchParams} isPreviousData={isPreviousData} />
-        </>
-    )}
+                        <MovieCard data={data} />
+
+                        <Pagination page={page} changePage={setSearchParams} isPreviousData={isPreviousData} />
+                </>
+            )}
 
 
     </Container>

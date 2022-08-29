@@ -12,12 +12,13 @@ const CinemaMoviesPage = () => {
   return (
     <Container>
       <h1>Films in cinema right now</h1>
-      {isLoading && (<p className='my-3'>Loading....</p>)}
+          {isLoading && (<p className='my-3'>Loading....</p>)}
 
-      {isError && ( <Alert variant="danger">
-        <h3>Ops, eerror</h3>
-        <p>{error.message}</p>
-      </Alert>)}
+          {isError && ( 
+              <Alert variant="danger">
+                <h3>Ops, eerror</h3>
+                <p>{error.message}</p>
+              </Alert>)}
       
         
           {data && <MovieCard data={data} />}
