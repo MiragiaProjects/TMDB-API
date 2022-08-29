@@ -41,7 +41,7 @@ export const getGenres = () => {
 
 // Get a movie
 const getMovie = (id) => {
-    return get(`/movie/${id}${apiKey}&language=en-US&include_adult=false&append_to_response=credits`)
+    return get(`/movie/${id}?api_key=${API_KEY}&language=en-US&include_adult=false&append_to_response=credits`)
 }
 
 // Get an actor

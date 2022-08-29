@@ -1,14 +1,13 @@
 import React from 'react'
 import { useParams, Link} from 'react-router-dom'
-import { useQuery } from 'react-query'
-import TMDBAPI from '../services/TMDB'
 import Container  from 'react-bootstrap/Container'
 import Alert  from 'react-bootstrap/Alert'
+import useMovie from '../hooks/useMovie'
 
 
 const MoviePage = () => {
     const { movie_id } = useParams()
-    const { data, isLoading, error, isError} = useQuery(['movie', movie_id], () => TMDBAPI.getMovie(movie_id))
+    const { data:movie, isLoading, error, isError} = useMovie(movie_id)
 
   return (
     <Container>
@@ -21,28 +20,28 @@ const MoviePage = () => {
             <p>{error.message}</p>
         </Alert>}
 
-        {data &&
+        {movie &&
         <>
             <div>
         
-                <h3>{data.title}</h3>
+                <h3>{movie.title}</h3>
 
-                {data.poster_path &&(
-                    <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
+                {movie.poster_path &&(
+                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                 )}
                 <div className='d-flex flex-column'>
-                    <p>Genre:{data.genres.map(genre => genre.name)}</p>
-                    <p>Released:{data.release_date}</p>
-                    <p>Rating: {data.vote_average}</p>
+                    <p>Genre:{movie.genres.map(genre => genre.name)}</p>
+                    <p>Released:{movie.release_date}</p>
+                    <p>Rating: {movie.vote_average}</p>
                     <h3>Overview</h3>
-                    <p>{data.overview}</p>
+                    <p>{movie.overview}</p>
                 </div>
             </div>
 
             <div>
                 <h3>Cast</h3>
                 <div className='d-flex'>
-                    {data.credits.cast.map(cast => (
+                    {movie.credits.cast.map(cast => (
                         <Card key={cast.id} className='w-20'>
                             {cast.profile_path && (
                                 <Card.Img variant='top' src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`} />
