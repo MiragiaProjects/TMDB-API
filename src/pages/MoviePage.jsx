@@ -30,18 +30,20 @@ const MoviePage = () => {
             <div>
         
                 <h3>{data.title}</h3>
-
+                <div className='d-flex'>
                 {data.poster_path &&(
                     <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
                 )}
-                <div className='d-flex flex-column'>
-                    <p>Genre:{data.genres.map(gen => gen.name)}</p>
-                    <p>Released:{data.release_date}</p>
-                    <h3>Overview</h3>
-                    <p>{data.overview}</p>
+                
+                    <div className='d-flex flex-column info-box'>
+                        <p>Genre:{data.genres.map(gen => gen.name)}</p>
+                        <p>Released:{data.release_date}</p>
+                        <h3>Overview</h3>
+                        <p>{data.overview}</p>
+                    </div>
                 </div>
             </div>
-
+            <hr />
             <div>
                 <h3>Cast</h3>
                 <div className='Card-Wrapper'>

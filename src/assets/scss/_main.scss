@@ -3,7 +3,7 @@ body {
 }
 
 .castCard {
-    background-color: #6f0cca;
+    background-color: #7accec;
     width: 300px;
 }
 
@@ -15,4 +15,14 @@ body {
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.info-box{
+    margin-left: 50px;
+}
+
+.filmCard {
+    width: 300px;
+    background-color: #7accec;
 }

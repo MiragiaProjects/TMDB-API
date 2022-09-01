@@ -8,12 +8,14 @@ import MovieCard from '../components/MovieCard'
 
 const GenrePage = () => {
     const [nameGenre, setNameGenre] = useState('')
-    const [searchParams, setSearchParams] = useSearchParams({query: '', page: 1})
-    const page = searchParams.get('page')
+
+    const [searchParams, setSearchParams] = useSearchParams({page: 1, genre_id: '',})
+
+    const page = searchParams.get('page') ? Number(searchParams.get('page')) : null
+
     const { genre_id } = useParams()
-    const {data, isLoading, error, isError, isPreviousData} = useQuery(['genre', genre_id, page], () => getGenre(genre_id, page), {
-        keepPreviousData: true
-    })
+
+    const {data, isLoading, error, isError, isSuccess} = useQuery(['genre', {genre_id, page}], () => getGenre(genre_id, page), {keepPreviousData: true})
 
     const getNameGenre = async () => {
         const allGenres = await getGenres()
@@ -22,8 +24,9 @@ const GenrePage = () => {
     }
 
     useEffect(() => {
+        setSearchParams({ genre_id, page})
         getGenre(genre_id, page)
-        getNameGenre
+        getNameGenre()
     }, [page, genre_id])
 
 
@@ -36,13 +39,18 @@ const GenrePage = () => {
 
             {isError && (<p>Ops! Error!{error.message}</p>)}
 
-            {data && (
+            {isSuccess && data && (
                 <>
                     <h1>{nameGenre}</h1>
 
                         <MovieCard data={data} />
 
-                        <Pagination page={page} changePage={setSearchParams} isPreviousData={isPreviousData} />
+                        <Pagination 
+                        page={page} 
+                        numPages={data.total_pages} 
+                        hasPreviousPage={data.page !== 1} 
+                        onPreviousPage={() => setSearchParams({page: page -1})}
+                        onNextPage={() => setSearchParams({ page: page + 1})} />
                 </>
             )}
 

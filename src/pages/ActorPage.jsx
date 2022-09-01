@@ -6,6 +6,7 @@ import Alert from 'react-bootstrap/Alert'
 import {getActor} from '../services/TMDB'
 import { Card } from 'react-bootstrap'
 import { useQuery } from 'react-query'
+import Button from 'react-bootstrap/Button'
 
 
 const ActorPage = () => {
@@ -26,26 +27,31 @@ const ActorPage = () => {
     {data && (
     <>
     <h1>{data.name}</h1>
-    <img className='img-fluid' src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}/>
-        <div>
-            <p>From: {data.birthday}</p>
-            <p>Born: {data.place_of_birth}</p>
-            <p>About: {data.biography}</p>
+    <div>
+        <div className='d-flex'>
+            <img className='img-fluid' src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}/>
+                <div className='info-box'>
+                    <p>Born: {data.birthday}</p>
+                    <p>From: {data.place_of_birth}</p>
+                    <p>About: {data.biography}</p>
+                </div>
+        </div>
+            <hr />
             <h3>Films:</h3>
-            <div>
-                {data.credits.cast.map(cred =>(
-                    <Card key={cred.id} className="w-20">
-                        {cred.poster_path && (
-                            <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w300${cred.poster_path}`} />
-                        )}
-                        <Card.Body className='d-flex flex-column'>
-                            <Card.Title>{cred.title}</Card.Title>
-                            <Card.Text>{cred.character}</Card.Text>
-                            <Button as={Link} to={`/movie/${cred.id}`} variant="primary">Read more....</Button>
-                        </Card.Body>
-                    </Card>
-                ))}
-            </div>
+                <div className='Card-Wrapper'>
+                    {data.credits.cast.map(cred =>(
+                        <Card key={cred.id} className="w-20 filmCard">
+                            {cred.poster_path && (
+                                <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w300${cred.poster_path}`} />
+                            )}
+                            <Card.Body className='d-flex flex-column'>
+                                <Card.Title>{cred.title}</Card.Title>
+                                <Card.Text>{cred.character}</Card.Text>
+                                <Button as={Link} to={`/movie/${cred.id}`} variant="primary">Read more....</Button>
+                            </Card.Body>
+                        </Card>
+                    ))}
+                </div>
         </div>
     </>
     )}
