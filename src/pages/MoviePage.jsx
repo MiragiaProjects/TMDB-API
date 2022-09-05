@@ -5,7 +5,6 @@ import Alert from 'react-bootstrap/Alert'
 import { getMovie } from '../services/TMDB'
 import { useQuery } from 'react-query'
 import Button from 'react-bootstrap/Button'
-//import Card  from 'react-bootstrap/Card'
 import  ListGroup  from 'react-bootstrap/ListGroup'
 import { ListGroupItem } from 'react-bootstrap'
 

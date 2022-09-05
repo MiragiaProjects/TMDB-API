@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Container  from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import {getActor} from '../services/TMDB'
-import { Card } from 'react-bootstrap'
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useQuery } from 'react-query'
 import Button from 'react-bootstrap/Button'
 
@@ -38,18 +38,16 @@ const ActorPage = () => {
         </div>
             <hr />
             <h3>Films:</h3>
-                <div className='Card-Wrapper'>
+                <div className='List-Wrapper'>
                     {data.credits.cast.map(cred =>(
-                        <Card key={cred.id} className="w-20 filmCard">
+                        <ListGroup key={cred.id} className="w-20 filmCard">
                             {cred.poster_path && (
-                                <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w300${cred.poster_path}`} />
+                                <img src={`https://image.tmdb.org/t/p/w300${cred.poster_path}`} />
                             )}
-                            <Card.Body className='d-flex flex-column'>
-                                <Card.Title>{cred.title}</Card.Title>
-                                <Card.Text>{cred.character}</Card.Text>
+                                <ListGroupItem>{cred.title}</ListGroupItem>
+                                <ListGroupItem>{cred.character}</ListGroupItem>
                                 <Button as={Link} to={`/movie/${cred.id}`} variant="primary">Read more....</Button>
-                            </Card.Body>
-                        </Card>
+                        </ListGroup>
                     ))}
                 </div>
         </div>
