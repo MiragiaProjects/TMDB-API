@@ -5,7 +5,9 @@ import Alert from 'react-bootstrap/Alert'
 import { getMovie } from '../services/TMDB'
 import { useQuery } from 'react-query'
 import Button from 'react-bootstrap/Button'
-import Card  from 'react-bootstrap/Card'
+//import Card  from 'react-bootstrap/Card'
+import  ListGroup  from 'react-bootstrap/ListGroup'
+import { ListGroupItem } from 'react-bootstrap'
 
 
 const MoviePage = () => {
@@ -46,18 +48,16 @@ const MoviePage = () => {
             <hr />
             <div>
                 <h3>Cast</h3>
-                <div className='Card-Wrapper'>
+                <div className='List-Wrapper'>
                     {data.credits.cast.map(cred => (
-                        <Card key={cred.id} className='castCard'>
+                        <ListGroup key={cred.id} className='castList'>
                             {cred.profile_path && (
-                                <Card.Img variant='top' src={`https://image.tmdb.org/t/p/w500${cred.profile_path}`} />
+                                <img src={`https://image.tmdb.org/t/p/w500${cred.profile_path}`} />
                             )}
-                            <Card.Body className='d-flex flex-column'>
-                                <Card.Title>{cred.name}</Card.Title>
-                                <Card.Text>{cred.character}</Card.Text>
+                                <ListGroupItem>{cred.name}</ListGroupItem>
+                                <ListGroupItem>{cred.character}</ListGroupItem>
                                 <Button className='mt-auto' as={Link} to={`/actor/${cred.id}`} variant="primary">Read more ....</Button>
-                            </Card.Body>
-                        </Card>
+                        </ListGroup>
                     ))}
                 </div>
             </div>

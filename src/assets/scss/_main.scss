@@ -2,7 +2,7 @@ body {
     background-color: #2977D6;
 }
 
-.castCard {
+.castList {
     background-color: #7accec;
     width: 300px;
 }
@@ -11,10 +11,10 @@ body {
     background-color: #D68829;
     
 }
-.Card-Wrapper {
+.List-Wrapper {
     display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    // flex-direction: row;
+     flex-wrap: wrap;
     margin-top: 20px;
 }
 
