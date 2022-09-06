@@ -31,6 +31,7 @@ const MoviePage = () => {
             <div>
         
                 <h3>{data.title}</h3>
+                <hr />
                 <div className='d-flex'>
                 {data.poster_path &&(
                     <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
@@ -39,6 +40,7 @@ const MoviePage = () => {
                     <div className='d-flex flex-column info-box'>
                         <p>Genre:{data.genres.map(gen => gen.name)}</p>
                         <p>Released:{data.release_date}</p>
+                        <p>Runtime:{data.runtime}</p>
                         <h3>Overview</h3>
                         <p>{data.overview}</p>
                     </div>
@@ -50,12 +52,14 @@ const MoviePage = () => {
                 <div className='List-Wrapper'>
                     {data.credits.cast.map(cred => (
                         <ListGroup key={cred.id} className='castList'>
+                            <ListGroupItem className='listGroupItem'>
                             {cred.profile_path && (
                                 <img src={`https://image.tmdb.org/t/p/w500${cred.profile_path}`} />
                             )}
-                                <ListGroupItem>{cred.name}</ListGroupItem>
-                                <ListGroupItem>{cred.character}</ListGroupItem>
+                                <p>{cred.name}</p>
+                                <p>{cred.character}</p>
                                 <Button className='mt-auto' as={Link} to={`/actor/${cred.id}`} variant="primary">Read more ....</Button>
+                                </ListGroupItem>
                         </ListGroup>
                     ))}
                 </div>

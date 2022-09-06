@@ -13,9 +13,10 @@ body {
 }
 .List-Wrapper {
     display:flex;
-     flex-direction: row;
-     flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 20px;
+    
 }
 
 .info-box{
@@ -25,4 +26,9 @@ body {
 .filmCard {
     width: 300px;
     background-color: whitesmoke;
+}
+
+.listGroupItem {
+    display: flex;
+    flex-direction: column;
 }

@@ -27,6 +27,7 @@ const ActorPage = () => {
     {data && (
     <>
     <h1>{data.name}</h1>
+    <hr />
     <div>
         <div className='d-flex'>
             <img className='img-fluid' src={`https://image.tmdb.org/t/p/w500${data.profile_path}`}/>
